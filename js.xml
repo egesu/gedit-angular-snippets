@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<snippets language="js">
+  <snippet>
+    <tag>overview</tag>
+    <description>ngDoc overview</description>
+    <text><![CDATA[/**
+ * @memberof ${1:moduleName}
+ * @ngdoc overview
+ * @description
+ * ${2:description}
+ */]]></text>
+  </snippet>
+  <snippet>
+    <tag>mod</tag>
+    <description>ngModule</description>
+    <text><![CDATA[/**
+ * @memberof ${1:moduleName}
+ * @ngdoc overview
+ * @description
+ * ${2:description}
+ */
+angular.module('${1:moduleName}'${3:, []})]]></text>
+  </snippet>
+  <snippet>
+    <tag>route</tag>
+    <description>ngRoute</description>
+    <text><![CDATA[.when('$1', {
+    templateUrl: '${2:templateUrl}',
+    controller: '${3:ControllerName}',
+    controllerAs: '${4:controllerName}',
+    label: '${5:label}'
+})$0]]></text>
+  </snippet>
+  <snippet>
+    <tag>routes</tag>
+    <description>ngRoutes</description>
+    <text><![CDATA[/**
+ * @memberof ${1:moduleName}
+ * @ngdoc route
+ * @name ${2:ObjectName}
+ * @param $routeProvider {provider} $routeProvider
+ *
+ * @description
+ */
+function ${2:ObjectName}($routeProvider) {
+    $routeProvider
+        .when('$3', {
+            templateUrl: '${4:templateUrl}',
+            controller: '${5:ControllerName}',
+            controllerAs: '${6:controllerName}',
+            label: '${7:label}'
+        })$0;
+}
+
+${2:ObjectName}.$inject = [
+    '$routeProvider'
+];
+
+angular.module('${1:moduleName}').config(${2:ObjectName});]]></text>
+  </snippet>
+  <snippet>
+    <tag>openM</tag>
+    <description>openModal</description>
+    <text><![CDATA[$scope.openModal(
+    '${1:templateUrl}',
+    '${2:controllerName}',
+    ${3:item ? item.id : null}
+);]]></text>
+  </snippet>
+</snippets>
