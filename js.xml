@@ -1,39 +1,211 @@
 <?xml version='1.0' encoding='utf-8'?>
 <snippets language="js">
   <snippet>
-    <tag>overview</tag>
-    <description>ngDoc overview</description>
+    <text><![CDATA[/**
+ * @constructor
+ * @ngdoc controller
+ * @memberof ${1:moduleName}
+ * @name ${2:ObjectName}
+ * @param $scope {service} controller scope$3
+ */
+function ${2:ObjectName}($scope) {
+    $0
+}
+
+${2:ObjectName}.$inject = [
+    '$scope',
+];
+
+angular.module('${1:moduleName}')
+    .controller('${2:ObjectName}', ${2:ObjectName});]]></text>
+    <tag>controller</tag>
+    <description>ngController</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[/**
+ * @ngdoc directive
+ * @name ${1:module}:${2:directive}
+ * @restrict '${3:E}'
+ * ${4:@scope}
+ **/
+function ${5:ObjectName}() {
+    return {
+        restrict: '${3:E}',
+        scope: {
+            ${6:scope}
+        },
+        templateUrl: '${}'
+    };
+}
+
+angular.module('${1:module}').directive('${2:directive}', ${5:ObjectName});]]></text>
+    <tag>dir</tag>
+    <description>ngDirective</description>
+  </snippet>
+  <snippet>
     <text><![CDATA[/**
  * @memberof ${1:moduleName}
  * @ngdoc overview
  * @description
  * ${2:description}
  */]]></text>
+    <tag>overview</tag>
+    <description>ngDoc overview</description>
   </snippet>
   <snippet>
-    <tag>mod</tag>
-    <description>ngModule</description>
+    <text><![CDATA[* @param ${1:paramName} {${2:type}} ${3:description}]]></text>
+    <tag>param</tag>
+    <description>ngDoc param</description>
+  </snippet>
+  <snippet>
     <text><![CDATA[/**
- * @memberof ${1:moduleName}
+ * @ngdoc method
+ * @memberof ${1:ControllerName}
+ * @description
+ * ${2:description}
+ */
+$scope.${3:methodName} = function($4) {
+    $0
+};]]></text>
+    <tag>method</tag>
+    <description>ngMethod</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[/**
  * @ngdoc overview
+ * @memberof ${1:moduleName}
  * @description
  * ${2:description}
  */
 angular.module('${1:moduleName}'${3:, []})]]></text>
+    <tag>mod</tag>
+    <description>ngModule</description>
   </snippet>
   <snippet>
-    <tag>route</tag>
-    <description>ngRoute</description>
+    <text><![CDATA[/**
+ * @ngdoc method
+ * @memberof ${1:ServiceName}
+ * @name ${2:methodName}
+ * @param urlParams {Object=} Data in url
+ * @param data {Object=} Data to send
+ * @param successCallback {callback} Called if request is successful
+ * @param errorCallback {callback} Called if request has error
+ * @description
+ * ${3:description}
+ */
+${2:methodName}: {
+    url: url + '${4:url}',
+    method: '${5:GET}',
+    params: {
+        ${6:id: '@id'}
+    }
+}]]></text>
+    <tag>action</tag>
+    <description>ngResource action</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[/**
+ * ${1:ServiceName} factory
+ * @constructor
+ * @ngdoc factory
+ * @memberof ${2:moduleName}
+ * @name ${1:ServiceName}
+ * @requires dugun.core:resource
+ *
+ * @returns {service} ${1:ServiceName} resource service
+ */
+function ${1:ServiceName}(resource) {
+    var url = '${3:url}';
+
+    var resourceService = resource(
+        url,
+        {
+            ${4:id: '@id'}
+        },
+        {
+            /**
+             * @ngdoc method
+             * @memberof ${1:ServiceName}
+             * @name query
+             * @param params {Object=} Parameters to send in url
+             * @param successCallback {callback} Called if request is successful
+             * @param errorCallback {callback} Called if request has error
+             * @description
+             * Get list
+             */
+            query: {
+                isArray: false
+            },
+            /**
+             * @ngdoc method
+             * @memberof ${1:ServiceName}
+             * @name update
+             * @param params {Object} Parameters to send in url
+             * @param params {Object} Parameters to send in PUT data
+             * @param successCallback {callback} Called if request is successful
+             * @param errorCallback {callback} Called if request has error
+             * @description
+             * Update
+             */
+            update: {
+                url: url,
+                method: 'PUT'
+            },
+            /**
+             * @ngdoc method
+             * @memberof ${1:ServiceName}
+             * @name insert
+             * @param params {Object} Parameters to send in url
+             * @param params {Object} Parameters to send in POST data
+             * @param successCallback {callback} Called if request is successful
+             * @param errorCallback {callback} Called if request has error
+             * @description
+             * Insert
+             */
+            insert: {
+                url: url,
+                method: 'POST'
+            },
+            /**
+             * @ngdoc method
+             * @memberof ${1:ServiceName}
+             * @name delete
+             * @param params {Object} Parameters to send in url
+             * @param successCallback {callback} Called if request is successful
+             * @param errorCallback {callback} Called if request has error
+             * @description
+             * Insert
+             */
+            delete: {
+                url: url,
+                method: 'POST'
+            }
+        }
+    );
+
+    return resourceService;
+}
+
+${1:ServiceName}.$inject = [
+    'resource'
+];
+
+angular.module('${2:moduleName}')
+    .factory('${1:ServiceName}', ${1:ServiceName});]]></text>
+    <tag>resource</tag>
+    <description>ngResource</description>
+  </snippet>
+  <snippet>
     <text><![CDATA[.when('$1', {
     templateUrl: '${2:templateUrl}',
     controller: '${3:ControllerName}',
     controllerAs: '${4:controllerName}',
     label: '${5:label}'
 })$0]]></text>
+    <tag>route</tag>
+    <description>ngRoute</description>
   </snippet>
   <snippet>
-    <tag>routes</tag>
-    <description>ngRoutes</description>
     <text><![CDATA[/**
  * @memberof ${1:moduleName}
  * @ngdoc route
@@ -57,14 +229,16 @@ ${2:ObjectName}.$inject = [
 ];
 
 angular.module('${1:moduleName}').config(${2:ObjectName});]]></text>
+    <tag>routes</tag>
+    <description>ngRoutes</description>
   </snippet>
   <snippet>
-    <tag>openM</tag>
-    <description>openModal</description>
     <text><![CDATA[$scope.openModal(
     '${1:templateUrl}',
     '${2:controllerName}',
     ${3:item ? item.id : null}
 );]]></text>
+    <tag>openM</tag>
+    <description>openModal</description>
   </snippet>
 </snippets>
